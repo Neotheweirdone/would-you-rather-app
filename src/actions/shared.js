@@ -5,6 +5,8 @@ import {_getUsers } from '_DATA.js'
 
 export function handleInitialData(){
     return(dispatch)=>{
-        return _getUsers().then(users)
+        return _getUsers().then(({users})=>{
+            dispatch(receiveUsers(users))
+        })
     }
 }
