@@ -1,67 +1,114 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.css'
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button, FormGroup, Form, Label, Input, FormText,
+  Dropdown, DropdownToggle, DropdownMenu, DropdownItem
+} from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min'
+import setAuthedUsers from '../actions/authedUser'
 
 class Login extends Component {
 
-    render() {
+  state = {
+    userSelected: 'select',
+    toHome: false,
+  }
 
-        return (
+  handleChange = (e) => {
+    const curUser = e.target.value
 
-            <div className="container" >
+    this.setState(() => ({
+      userSelected: curUser,
+    }))
+  }
 
-                <div className="col-lg-12 col-md-12 col-sm-12" style={{ marginTop: "5vh", marginBottom: "5vh" }}>
-                    <h1 className="text-center">
-                        Login
-        </h1>
-                    <p className="text-center">Select one user</p>
-                </div>
-                <div className="row">
-                    {
-                        this.props.users !== null && Object.values(this.props.users).map(user =>
-                            (
-                                <div className="col-lg-4 col-md-4 col-xs-6 col-sm-6" key={user.id}>
-                                    <div className="center" style={{ width: "18rem" }}>
-                                        <img className="card-img-top-center" style={{ height: "250px" }} src={user.avatarURL} alt="Card image cap" />
-                                        <div className="card-body">
-                                            <h5 className='card-title'>{user.name}</h5>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            ))
-
-                    }
-                </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 text-center" >
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { userSelected } = this.state
 
 
-                    <button style={{ marginRight: "15px" }} className="btn btn-outline-danger btn-lg">Clear selection</button>
+    if (userSelected !== 'select') {
+      this.dispatch(setAuthedUsers(userSelected))
 
-
-                    <button className="btn btn-outline-success btn-lg">Login</button>
-
-
-                </div>
-
-
-
-
-            </div>
-
-        )
-
-
+      this.setState(() => ({
+        userSelected: 'select',
+        toHome: true,
+      }))
     }
+  }
 
+  render() {
+
+
+    return (
+      <Card className="app-container">
+        <CardTitle>
+          <h2 className="center">Welcome to Would You Rather!</h2>
+          <p className="center">Please sign in to continue</p>
+        </CardTitle>
+        <CardBody>
+          <CardImg width="50%" height="122" src="/Redux.svg" alt="React image" />
+          <h3 className="center">Sign in</h3>
+          <Form>
+            <FormGroup >
+              <CardText componentClass="select" placeholder="select" onChange={e => this.handleChange(e)}>
+                <Input type="select" name="select" style={{
+                  maxWidth: "50%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}  >
+                  {this.props.users.map((user) => {
+                    return <option value={user.id} key={user.id}>{user.name}</option>
+                  })}
+
+                </Input>
+              </CardText>
+            </FormGroup>
+            <Button type="submit" block>Sign In</Button>
+          </Form>
+        </CardBody>
+      </Card>
+    )
+  }
 }
-
 
 function mapStateToProps({ users }) {
+  const userIds = Object.keys(users)
+  const myUsers = userIds.map(id => ({
+    id: users[id].id,
+    name: users[id].name
+  }))
 
-
-    return {
-        users
-    }
+  return {
+    users: myUsers
+  }
 }
 export default connect(mapStateToProps)(Login)
+
+
+
+
+
+
+
+
+
+{/*        <CardBody>
+              <CardImg src="http://www.evolvefish.com/thumbnail.asp?file=assets/images/vinyl%20decals/EF-VDC-00035(black).jpg&maxx=300&maxy=0" className="login-image" />
+              <h3 className="center">Sign in</h3>
+              <Form onSubmit={this.handleSubmit}>
+                <Form.Group controlId="formControlsSelect">
+                  
+                  <DropdownButton componentClass="select" placeholder="select" onChange={e => this.handleChange(e)}>
+                    <option value='select' key='select'>Select User</option>
+                    {this.props.users.map(user => (
+                      <DropdownItem value={user.id} key={user.id}>{user.name}</Dropdown.Item>
+                    ))}
+                  </DropdownButton>
+                </Form.Group>
+                <Button type="submit" block>Sign In</Button>
+              </Form>
+                    </CardBody>*/}

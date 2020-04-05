@@ -1,25 +1,25 @@
-import React,{Component } from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import Dashboard from './components/Dashboard';
-import {connect} from 'react-redux'
-import {handleInitialData} from './actions/shared'
+import Login from './components/Login';
+import { connect } from 'react-redux'
+import { handleInitialData } from './actions/shared'
 
 
 class App extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
 
-  render(){
+  render() {
 
-  return (
-    <div className="App">
-       <Dashboard/>
-      
-    </div>
-  );
-}
+    return (
+      <div className="App">
+        <Login />
+
+      </div>
+    );
+  }
 }
 
 
