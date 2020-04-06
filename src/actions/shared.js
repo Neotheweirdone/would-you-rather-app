@@ -1,12 +1,14 @@
 import { receiveQuestions } from './questions'
 import { receiveUsers } from './users'
 import { setAuthedUser } from './authedUser'
-import {_getUsers } from '../_DATA.js'
+import { getInitialData } from '../utils/api'
 
-export function handleInitialData(){
-    return(dispatch)=>{
-        return _getUsers().then((users)=>{
+
+export function handleInitialData() {
+    return (dispatch) => {
+        return getInitialData().then(({ users, questions }) => {
             dispatch(receiveUsers(users))
+            dispatch(receiveQuestions(questions))
         })
     }
 }

@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, FormGroup, Form, Label, Input, FormText,
-  Dropdown, DropdownToggle, DropdownMenu, DropdownItem
-} from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+  CardTitle, Button, FormGroup, Form,  Input} from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 import setAuthedUsers from '../actions/authedUser'
 
