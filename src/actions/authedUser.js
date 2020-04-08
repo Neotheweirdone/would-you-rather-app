@@ -1,4 +1,4 @@
-const SET_AUTHED_USERS='SET_AUTHED_USERS'
+export const SET_AUTHED_USERS='SET_AUTHED_USERS'
 
 export default function setAuthedUsers(id){
     return{

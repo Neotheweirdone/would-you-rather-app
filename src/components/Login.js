@@ -28,7 +28,7 @@ class Login extends Component {
 
 
     if (userSelected !== 'select') {
-      this.dispatch(setAuthedUsers(userSelected))
+      this.props.dispatch(setAuthedUsers(userSelected))
 
       this.setState(() => ({
         userSelected: 'select',
