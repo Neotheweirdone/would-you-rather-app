@@ -37,9 +37,9 @@ class Home extends Component {
                         <Card.Body>
                             <Card.Title>Card Title</Card.Title>
                             <Card.Text>
-{this.props.answeredQuestions.map(()=>{
-    return 
-})}
+                                {this.props.answeredQuestions.map((id) => {
+                                    return <Questions id={id} />
+                                })}
                             </Card.Text>
                             <Button variant="primary">Go somewhere</Button>
                         </Card.Body>
@@ -49,9 +49,10 @@ class Home extends Component {
                     <Card.Body>
                         <Card.Title>Card Title</Card.Title>
                         <Card.Text>
-                            Some quick example text to build on the card title and make up the bulk of
-                            the card's content.
-  </Card.Text>
+                            {this.props.unansweredQuestions.map((id) => {
+                                return <Questions id={id} />
+                            })}
+                        </Card.Text>
                         <Button variant="primary">Go somewhere</Button>
                     </Card.Body>
                 </Card>)
@@ -61,23 +62,23 @@ class Home extends Component {
     }
 }
 function mapStateToProps({ questions, users, authedUser }) {
-    const answeredQuestions=Object.keys(users[authedUser].answers)
+    const answeredQuestions = Object.keys(users[authedUser].answers)
 
-    const unansweredQuestions=Object.keys(questions).filter(qid=>{
-        const match=answeredQuestions.filter((ansId)=>ansId===qid)//need to check if the questions match
-          if(match===undefined||match.length===0){
-              return qid
+    const unansweredQuestions = Object.keys(questions).filter(qid => {
+        const match = answeredQuestions.filter((ansId) => ansId === qid)//need to check if the questions match
+        if (match === undefined || match.length === 0)
+            return qid
 
-           }
-           else{
-               return false
-           }
-    }
-    ) 
-        
+
+
+        return false
+
+    })
+    const answeredQuestionsByDate = answeredQuestions.sort((a, b) => (questions[a].timestamp - questions[b].timestamp) * -1)
+    const unansweredQuestionsByDate = unansweredQuestions.sort((a, b) => (questions[a].timestamp - questions[b].timestamp) * -1)
     return {
-        answeredQuestions,
-        unansweredQuestions
+        answeredQuestions: answeredQuestionsByDate,
+        unansweredQuestions: unansweredQuestionsByDate
     }
 }
 export default connect(mapStateToProps)(Home)

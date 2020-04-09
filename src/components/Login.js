@@ -2,10 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, Button, FormGroup, Form,  Input} from 'reactstrap';
+  CardTitle, Button, FormGroup, Form, Input
+} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 import setAuthedUsers from '../actions/authedUser'
+import {bindActionCreators} from 'redux'
+
 
 class Login extends Component {
 
@@ -84,29 +87,8 @@ function mapStateToProps({ users }) {
     users: myUsers
   }
 }
-export default connect(mapStateToProps)(Login)
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({setAuthedUsers:setAuthedUsers},dispatch)
+}
 
-
-
-
-
-
-
-
-
-{/*        <CardBody>
-              <CardImg src="http://www.evolvefish.com/thumbnail.asp?file=assets/images/vinyl%20decals/EF-VDC-00035(black).jpg&maxx=300&maxy=0" className="login-image" />
-              <h3 className="center">Sign in</h3>
-              <Form onSubmit={this.handleSubmit}>
-                <Form.Group controlId="formControlsSelect">
-                  
-                  <DropdownButton componentClass="select" placeholder="select" onChange={e => this.handleChange(e)}>
-                    <option value='select' key='select'>Select User</option>
-                    {this.props.users.map(user => (
-                      <DropdownItem value={user.id} key={user.id}>{user.name}</Dropdown.Item>
-                    ))}
-                  </DropdownButton>
-                </Form.Group>
-                <Button type="submit" block>Sign In</Button>
-              </Form>
-                    </CardBody>*/}
+export default connect(mapStateToProps, matchDispatchToProps)(Login)
