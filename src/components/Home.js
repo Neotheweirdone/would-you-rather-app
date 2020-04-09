@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { Card, Button } from 'react-bootstrap'
+import Questions from './Questions'
 
 class Home extends Component {
 

@@ -78,7 +78,7 @@ class Login extends Component {
 
 function mapStateToProps({ users }) {
   const userIds = Object.keys(users)
-  const myUsers = userIds.map(id => ({
+  const myUsers = userIds.map(id => ({id here is the loop number iteration
     id: users[id].id,
     name: users[id].name
   }))
