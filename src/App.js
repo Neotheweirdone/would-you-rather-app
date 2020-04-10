@@ -4,6 +4,15 @@ import Login from './components/Login';
 import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import Home from './components/Home';
+import { BrowserRouter as Router, Route,Switch, Redirect } from 'react-router-dom'
+
+
+function PrivateRoute({component:Component,authedUser,...rest}){
+  return(
+    <Route {...rest} render={(props)=>authedUser!==null?
+    <Component {...props}/>:<Redirect to="/login"/>}
+/>  
+  )}
 
 class App extends Component {
 
@@ -13,17 +22,26 @@ class App extends Component {
 
   render() {
 
-    return (
+    return (<Router>
+
       <div className="App">
-        {/*<Login />*/}
-      <Home/>
+      <Switch>
+        <Route path='/login' exact component={Login} />
+        <PrivateRoute  path='/' authedUser={this.props.authedUser} exact component={Home} />
+        </Switch>
       </div>
+    </Router>
+
     );
   }
 }
 
+function mapStateToProps({authedUser}){
+  return{
+    authedUser
+  }
+}
 
-
-export default connect()(App);
+export default connect(mapStateToProps)(App);
 
 

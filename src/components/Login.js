@@ -7,7 +7,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 import setAuthedUsers from '../actions/authedUser'
-import {bindActionCreators} from 'redux'
+
 
 
 class Login extends Component {
@@ -78,7 +78,7 @@ class Login extends Component {
 
 function mapStateToProps({ users }) {
   const userIds = Object.keys(users)
-  const myUsers = userIds.map(id => ({id here is the loop number iteration
+  const myUsers = userIds.map(id => ({//id here is the loop number iteration
     id: users[id].id,
     name: users[id].name
   }))
@@ -87,8 +87,5 @@ function mapStateToProps({ users }) {
     users: myUsers
   }
 }
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators({setAuthedUsers:setAuthedUsers},dispatch)
-}
 
-export default connect(mapStateToProps, matchDispatchToProps)(Login)
+export default connect(mapStateToProps)(Login)
