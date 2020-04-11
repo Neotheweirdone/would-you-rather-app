@@ -7,6 +7,7 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 import setAuthedUsers from '../actions/authedUser'
+import { Redirect } from 'react-router';
 
 
 
@@ -42,6 +43,9 @@ class Login extends Component {
 
   render() {
 
+    if (this.state.toHome === true) {
+      <Redirect to='/' />
+    }
 
     return (
       <Card className="app-container">
