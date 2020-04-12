@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import {
-  Card, CardImg, CardText, CardBody,
+  Card, CardImg, Label, CardBody,
   CardTitle, Button, FormGroup, Form, Input
 } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -44,7 +44,7 @@ class Login extends Component {
   render() {
 
     if (this.state.toHome === true) {
-     return <Redirect to='/' />
+      return <Redirect to='/' />
     }
 
     return (
@@ -58,9 +58,9 @@ class Login extends Component {
           <h3 className="center">Sign in</h3>
           <Form>
             <FormGroup >
-              <CardText componentClass="select" placeholder="select" onChange={e => this.handleChange(e)}>
+              <Label componentClass="select" placeholder="select" onChange={e => this.handleChange(e)}>
                 <Input type="select" name="select" style={{
-                  maxWidth: "50%",
+                  
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center"
@@ -70,9 +70,9 @@ class Login extends Component {
                   })}
 
                 </Input>
-              </CardText>
+              </Label>
             </FormGroup>
-            <Button type="submit" block>Sign In</Button>
+            <Button type="submit" block onSubmit={this.handleSubmit}>Sign In</Button>
           </Form>
         </CardBody>
       </Card>

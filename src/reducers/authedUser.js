@@ -1,8 +1,8 @@
-import { SET_AUTH_USER } from '../actions/authUser'
+import { SET_AUTHED_USERS } from '../actions/authedUser'
 
-export default function authUser (state = null, action) {
+export default function authedUser (state = null, action) {
   switch(action.type) {
-    case SET_AUTH_USER : 
+    case SET_AUTHED_USERS : 
       return action.id
     default :
       return state

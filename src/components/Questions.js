@@ -17,7 +17,7 @@ class Questions extends Component {
 }
 
 function mapStateToProps({ questions, users, authedUser }, { id }) {
-    const Questionarr = Object.keys(Questions)
+
     let userId = null
     if (id) {
         userId = id
@@ -25,7 +25,7 @@ function mapStateToProps({ questions, users, authedUser }, { id }) {
         console.log("error")
     }
 
-    const question = Questionarr[id]
+    const question = questions[id]
     const excerpt = question.optionOne.text.length > 5 ? question.optionOne.text.substring(0, 10) : question.optionOne.text
 
     return {
