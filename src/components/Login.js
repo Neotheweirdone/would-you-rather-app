@@ -56,7 +56,7 @@ class Login extends Component {
         <CardBody>
           <CardImg width="50%" height="122" src="/Redux.svg" alt="React image" />
           <h3 className="center">Sign in</h3>
-          <Form>
+          <Form onSubmit={this.handleSubmit}>
             <FormGroup >
               <Label componentClass="select" placeholder="select" onChange={e => this.handleChange(e)}>
                 <Input type="select" name="select" style={{
@@ -72,7 +72,7 @@ class Login extends Component {
                 </Input>
               </Label>
             </FormGroup>
-            <Button type="submit" block onSubmit={this.handleSubmit}>Sign In</Button>
+            <Button type="submit" >Sign In</Button>
           </Form>
         </CardBody>
       </Card>

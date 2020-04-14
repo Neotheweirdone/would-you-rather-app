@@ -33,28 +33,28 @@ class Home extends Component {
 
             {this.state.answered === "answered" ?
                 (
-                    <Card style={{ width: '18rem' }}>
-                        <Card.Img variant="top" src="holder.js/100px180" />
-                        <Card.Body>
-                            <Card.Title>Card Title</Card.Title>
-                            <Card.Text>
+                    <Card >
+
+                        <Card.Body className="center" >
+                            
+                            <Card.Text >
                                 {this.props.answeredQuestions.map((id) => {
-                                    return <Questions id={id} />
+                                    return <Questions id={id} key={id} className="preview-li" />
                                 })}
                             </Card.Text>
-                            <Button variant="primary">Go somewhere</Button>
+
                         </Card.Body>
                     </Card>
-                ) : (<Card style={{ width: '18rem' }}>
-                    <Card.Img variant="top" src="holder.js/100px180" />
+                ) : (<Card width>
+
                     <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
+                        
                         <Card.Text>
                             {this.props.unansweredQuestions.map((id) => {
-                                return <Questions id={id} />
+                                return <Questions id={id} key={id} className="preview-li"/>
                             })}
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+
                     </Card.Body>
                 </Card>)
             }
@@ -69,11 +69,7 @@ function mapStateToProps({ questions, users, authedUser }) {
         const match = answeredQuestions.filter((ansId) => ansId === qid)//need to check if the questions match
         if (match === undefined || match.length === 0)
             return qid
-
-
-
         return false
-
     })
     const answeredQuestionsByDate = answeredQuestions.sort((a, b) => (questions[a].timestamp - questions[b].timestamp) * -1)
     const unansweredQuestionsByDate = unansweredQuestions.sort((a, b) => (questions[a].timestamp - questions[b].timestamp) * -1)
