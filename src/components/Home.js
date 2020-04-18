@@ -23,41 +23,41 @@ class Home extends Component {
                 onSelect={this.handleTab}
             >
                 <Tab eventKey="answered" title="Answered">
+                    {this.props.answeredQuestions.map((id) => {
+                        return (
+                            <Card >
 
+                                <Card.Body>
+
+                                    <Card.Text >
+                                        <Questions id={id} key={id}  />
+
+                                    </Card.Text>
+
+                                </Card.Body>
+                            </Card>)
+                    })}
                 </Tab>
                 <Tab eventKey="unanswered" title="Unanswered">
+                    {this.props.unansweredQuestions.map((id) => {
+                        return (
+                            <Card>
 
+                                <Card.Body>
+
+                                    <Card.Text>
+                                        <Questions id={id} key={id} className="preview-li" />
+
+                                    </Card.Text>
+
+                                </Card.Body>
+                            </Card>)
+                    })}
                 </Tab>
 
             </Tabs>
 
-            {this.state.answered === "answered" ?
-                (
-                    <Card >
 
-                        <Card.Body className="center" >
-                            
-                            <Card.Text >
-                                {this.props.answeredQuestions.map((id) => {
-                                    return <Questions id={id} key={id} className="preview-li" />
-                                })}
-                            </Card.Text>
-
-                        </Card.Body>
-                    </Card>
-                ) : (<Card width>
-
-                    <Card.Body>
-                        
-                        <Card.Text>
-                            {this.props.unansweredQuestions.map((id) => {
-                                return <Questions id={id} key={id} className="preview-li"/>
-                            })}
-                        </Card.Text>
-
-                    </Card.Body>
-                </Card>)
-            }
         </div>
         )
     }

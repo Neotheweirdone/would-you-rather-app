@@ -22,19 +22,26 @@ code {
     float:left
  
 }
-.preview-authorname{
- 
-    margin: 5px 5px 10px 5px;
-    font-weight: bold;
-  
+.preview-author {
+  margin: 5px 5px 10px 5px;
+  font-weight: bold;
 }
 
 .preview-container {
   float: left;
-  padding-left: 25px;
-  margin-top: 5px;
+  padding-left: 200px;
+  margin-top: 60px;
   border-left: solid 1px #CCC;
 }
 .preview-li {
   height: 210px;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-container{
+  text-align: center;
 }

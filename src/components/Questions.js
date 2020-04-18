@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Image, Button,Col} from 'react-bootstrap'
+import {Image, Button} from 'react-bootstrap'
 
 
 class Questions extends Component {
     render() {
-        return (<div className="Question-container">
+        return (<div >
             
-            <h4 className="preview-authorname">{this.props.name.name} asks:</h4>
+            <h4 className="preview-author" >{this.props.name.name} asks:</h4>
             
             <Image src={this.props.name.avatarURL} roundedCircle className="author-image" />
             
@@ -16,7 +16,9 @@ class Questions extends Component {
                 <h3>Would you rather</h3>
         <p>...{this.props.excerpt}...</p>
         <br/>
+        <div className="center">
         <Button variant="outline-primary">View Polls</Button>
+        </div>
             </div>
         </div>)
     }
