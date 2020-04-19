@@ -14,9 +14,9 @@ class NavHead extends Component {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav bsStyle='tabs' className="nav-preview">
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/">Home</NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/add">New Question</NavLink>
-                        <NavLink className="d-inline p-2 bg-dark text-white" to="/">Leaderboard</NavLink>
+                        <Link className="d-inline p-2 bg-dark text-white" to="/">Home</Link>
+                        <Link className="d-inline p-2 bg-dark text-white" to="/add">New Question</Link>
+                        <Link className="d-inline p-2 bg-dark text-white" to="/">Leaderboard</Link>
                         </Nav>
                      
                            <button className="button-preview" >Logout</button>
