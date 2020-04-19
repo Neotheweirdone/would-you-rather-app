@@ -19,18 +19,20 @@ code {
     height: 300px;
     border-radius: 50%;
     transform: scale(.76, .5);
-    float:left
- 
+    float:left;
+
 }
 .preview-author {
   margin: 5px 5px 10px 5px;
   font-weight: bold;
+  
+
 }
 
 .preview-container {
   float: left;
-  padding-left: 200px;
-  margin-top: 60px;
+  padding-left: 240px;
+  margin-top: 80px;
   border-left: solid 1px #CCC;
 }
 .preview-li {
@@ -44,4 +46,12 @@ code {
 }
 .btn-container{
   text-align: center;
+}
+
+
+.button-preview{
+  display: flex;
+  justify-content: flex-end;
+  float: right;
+  margin-left: auto;
 }

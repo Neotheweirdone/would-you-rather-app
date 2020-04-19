@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { Card, Button } from 'react-bootstrap'
 import Questions from './Questions'
 
 class Home extends Component {
@@ -25,33 +24,18 @@ class Home extends Component {
                 <Tab eventKey="answered" title="Answered">
                     {this.props.answeredQuestions.map((id) => {
                         return (
-                            <Card >
 
-                                <Card.Body>
-
-                                    <Card.Text >
-                                        <Questions id={id} key={id}  />
-
-                                    </Card.Text>
-
-                                </Card.Body>
-                            </Card>)
+                            <Questions id={id} key={id} />
+                        )
                     })}
                 </Tab>
                 <Tab eventKey="unanswered" title="Unanswered">
                     {this.props.unansweredQuestions.map((id) => {
                         return (
-                            <Card>
 
-                                <Card.Body>
+                            <Questions id={id} key={id} className="preview-li" />
 
-                                    <Card.Text>
-                                        <Questions id={id} key={id} className="preview-li" />
-
-                                    </Card.Text>
-
-                                </Card.Body>
-                            </Card>)
+                        )
                     })}
                 </Tab>
 

@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import { handleInitialData } from './actions/shared'
 import Home from './components/Home';
 import { BrowserRouter as Router, Route,Switch, Redirect } from 'react-router-dom'
-
+import NavHead from './components/NavHead'
+import NewQuestion from './components/NewQuestion';
 
 function PrivateRoute({component:Component,authedUser,...rest}){
   return(
@@ -25,9 +26,11 @@ class App extends Component {
     return (<Router>
 
       <div className="App">
+      <NavHead/>
       <Switch>
         <Route path='/login' exact component={Login} />
         <PrivateRoute  path='/' authedUser={this.props.authedUser} exact component={Home} />
+        <PrivateRoute path="/add" authedUser={this.props.authedUser} exact component={NewQuestion}/>
         </Switch>
       </div>
     </Router>
