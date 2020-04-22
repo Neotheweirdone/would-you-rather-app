@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Card, Form, Button } from 'react-bootstrap'
+import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
 
@@ -11,21 +12,30 @@ class NewQuestion extends Component {
 
     handleChange = (e1) => {
         const text1 = e1.target.value
-        
+
         this.setState(() => ({
             text1: text1,
-            
+
         }))
     }
 
-    handleChangenew=(e2)=>{
+    handleChangenew = (e2) => {
         const text2 = e2.target.value
-        
+
         this.setState(() => ({
-           
+
             text2: text2
         }))
     }
+
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const { text1, text2 } = this.state
+        const { dispatch, authedUser } = this.props
+        dispatch(handleAddQuestion(text1, text2, authedUser))
+    }
+    
     render() {
         return (<div>
             <Card className="preview-card-question">
@@ -41,7 +51,7 @@ class NewQuestion extends Component {
 
                        WOULD YOU RATHER...
                        </p>
-                        <Form >
+                        <Form onSubmit={this.handleSubmit}>
                             <Form.Control type="text" placeholder="Enter Option One Text Here" value={this.state.text1}
                                 onChange={this.handleChange} />
                             <p className="preview-author mt-3">OR</p>
@@ -49,7 +59,7 @@ class NewQuestion extends Component {
                                 onChange={this.handleChangenew} />
                             <br />
                             <br />
-                            <Button variant="success" block>Submit</Button>
+                            <Button variant="success" block >Submit</Button>
                         </Form>
                     </Card.Text>
                 </Card.Body>
@@ -58,9 +68,9 @@ class NewQuestion extends Component {
     }
 }
 
-function mapStateToProps({ questions, users, authedUser }) {
+function mapStateToProps({ authedUser }) {
     return {
-
+        authedUser
     }
 }
 

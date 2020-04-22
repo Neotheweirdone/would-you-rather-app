@@ -11,12 +11,18 @@ export function receiveQuestions(questions) {
     }
 }
 
+function addQuestion(question) {
+    return {
+        type: ADD_QUESTION,
+        question
+    }
+}
 
 export function handleAddQuestion(text1, text2, authedUser) {
     return (dispatch, getState) => {
         const { authedUser } = getState()
 
-        dispatch(showLoading())
+       
         return saveQuestion({
             text1,
             text2,
@@ -24,10 +30,5 @@ export function handleAddQuestion(text1, text2, authedUser) {
         })
             .then((question) => (addQuestion(question)))
     }
-
-    function addQuestion(question) {
-        return {
-            type: ADD_QUESTION,
-            question
-        }
-    }
+}
+   
