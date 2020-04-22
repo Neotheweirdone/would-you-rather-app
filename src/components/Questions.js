@@ -13,7 +13,7 @@ class Questions extends Component {
                 </Card.Header>
                 <Card.Body>
 
-                    <Card.Text >
+                   
                        
 
                         <Image src={this.props.name.avatarURL} roundedCircle className="author-image" />
@@ -27,7 +27,7 @@ class Questions extends Component {
                                 <Button variant="outline-primary">View Polls</Button>
                             </div>
                         </div>
-                    </Card.Text>
+                    
                 </Card.Body>
             </Card>
         )

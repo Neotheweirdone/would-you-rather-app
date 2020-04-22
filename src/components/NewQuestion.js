@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Card, Form, Button } from 'react-bootstrap'
+import { Card, Form, Button, FormGroup } from 'react-bootstrap'
 import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
@@ -31,11 +31,12 @@ class NewQuestion extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        console.log("Hello")
         const { text1, text2 } = this.state
         const { dispatch, authedUser } = this.props
         dispatch(handleAddQuestion(text1, text2, authedUser))
     }
-    
+
     render() {
         return (<div>
             <Card className="preview-card-question">
@@ -44,7 +45,7 @@ class NewQuestion extends Component {
                 </Card.Header>
                 <Card.Body>
 
-                    <Card.Text >
+                    
                         <p className="question-preview mt-5">Complete the question:
                        <br />
                             <br />
@@ -52,6 +53,7 @@ class NewQuestion extends Component {
                        WOULD YOU RATHER...
                        </p>
                         <Form onSubmit={this.handleSubmit}>
+                            <FormGroup>
                             <Form.Control type="text" placeholder="Enter Option One Text Here" value={this.state.text1}
                                 onChange={this.handleChange} />
                             <p className="preview-author mt-3">OR</p>
@@ -59,9 +61,10 @@ class NewQuestion extends Component {
                                 onChange={this.handleChangenew} />
                             <br />
                             <br />
-                            <Button variant="success" block >Submit</Button>
+                            </FormGroup>
+                            <Button variant="success" block type="submit">Submit</Button>
                         </Form>
-                    </Card.Text>
+                  
                 </Card.Body>
             </Card>
         </div>)

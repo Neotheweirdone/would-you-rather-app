@@ -13,7 +13,7 @@ class NavHead extends Component {
                     
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav bsStyle='tabs' className="nav-preview">
+                        <Nav  className="nav-preview">
                         <Link className="d-inline p-2 bg-dark text-white" to="/">Home</Link>
                         <Link className="d-inline p-2 bg-dark text-white" to="/add">New Question</Link>
                         <Link className="d-inline p-2 bg-dark text-white" to="/">Leaderboard</Link>

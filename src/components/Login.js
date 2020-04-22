@@ -58,7 +58,7 @@ class Login extends Component {
           <h3 className="center">Sign in</h3>
           <Form onSubmit={this.handleSubmit}>
             <FormGroup >
-              <Label componentClass="select" placeholder="select" onChange={e => this.handleChange(e)}>
+              <Label  placeholder="select" onChange={e => this.handleChange(e)}>
                 <Input type="select" name="select" style={{
                   
                   display: "flex",
