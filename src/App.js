@@ -7,6 +7,7 @@ import Home from './components/Home';
 import { BrowserRouter as Router, Route,Switch, Redirect } from 'react-router-dom'
 import NavHead from './components/NavHead'
 import NewQuestion from './components/NewQuestion';
+import QuestionPreview from './components/QuestionPreview';
 
 function PrivateRoute({component:Component,authedUser,...rest}){
   return(
@@ -31,6 +32,7 @@ class App extends Component {
         <Route path='/login' exact component={Login} />
         <PrivateRoute  path='/' authedUser={this.props.authedUser} exact component={Home} />
         <PrivateRoute path="/add" authedUser={this.props.authedUser} exact component={NewQuestion}/>
+        <PrivateRoute path="/questionspreview/:id" authedUser={this.props.authedUser} exact component={QuestionPreview}/>
         </Switch>
       </div>
     </Router>

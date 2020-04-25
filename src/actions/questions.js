@@ -28,7 +28,7 @@ export function handleAddQuestion(text1, text2, authedUser) {
             optionTwoText: text2,
             author: authedUser
         })
-            .then((question) => (addQuestion(question)))
+            .then((question) => dispatch(addQuestion(question)))
     }
 }
    
