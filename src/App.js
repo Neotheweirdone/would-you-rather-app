@@ -32,7 +32,7 @@ class App extends Component {
         <Route path='/login' exact component={Login} />
         <PrivateRoute  path='/' authedUser={this.props.authedUser} exact component={Home} />
         <PrivateRoute path="/add" authedUser={this.props.authedUser} exact component={NewQuestion}/>
-        <PrivateRoute path="/questionspreview/:id" authedUser={this.props.authedUser} exact component={QuestionPreview}/>
+        <PrivateRoute path="/quesitons/:id" authedUser={this.props.authedUser} exact component={QuestionPreview}/>
         </Switch>
       </div>
     </Router>

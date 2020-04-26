@@ -21,7 +21,7 @@ const {id}=this.props
                         <p>...{this.props.excerpt}...</p>
                         <br />
                         <div className="center">
-                            <Link to={`/questionspreview/${id}`}>
+                            <Link to={`/quesitons/${id}`}>
                             <Button variant="outline-primary">View Polls</Button>
                             </Link>
                         </div>

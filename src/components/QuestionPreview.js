@@ -1,50 +1,79 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Image } from 'react-bootstrap'
-import { Card, Form, Button, FormGroup } from 'react-bootstrap'
+import {ProgressBar, Card, Form, Button, FormGroup } from 'react-bootstrap'
 
 
 class QuestionPreview extends Component {
 
-    state={
-        answerSelected:null
+    state = {
+        answerSelected: null
     }
-    handleChange=()=>{
-        
+    handleChange = () => {
+
     }
 
-    handleSubmit=()=>{
+    handleSubmit = () => {
 
     }
 
     render() {
-        return (<Card className="preview-card mt-3">
-            <Card.Header>
-                <h4 className="preview-author">{this.props.username} asks:</h4>
-            </Card.Header>
-            <Card.Body>
-                <Image src={this.props.avatar} roundedCircle className="author-image" />
+        const now=60
+        return (
+            <div>
+
+                {(this.props.authedUserAns === null) ? (
+                    <Card className="preview-card mt-3">
+                        <Card.Header>
+                        <h4 className="preview-author">{this.props.username.name} asks:</h4>
+                        </Card.Header>
+                        <Card.Body>
+                            <Image src={this.props.avatar} roundedCircle className="author-image" />
 
 
-                <div className="preview-container">
-                    <h3>Would you rather</h3>
-                    <Form onSubmit={this.handleSubmit}>
-                        <FormGroup>
-                            <Form.Check type="radio" placeholder="Enter Option One Text Here" 
-                                onChange={this.handleChange} >{this.props.optionOne}</Form.Check>
-                            <p className="preview-author mt-3">OR</p>
-                            <Form.Check type="radio" placeholder="Enter Option Two Text Here" 
-                                onChange={this.handleChange} />
-                            <br />
-                            <br />
-                        </FormGroup>
-                        <Button variant="success" block type="submit">Submit</Button>
-                    </Form>
+                            <div className="preview-container">
+                                <h3>Would you rather</h3>
+                                <Form onSubmit={this.handleSubmit}>
+                                    <FormGroup>
+                                        <Form.Check type="radio" placeholder="Enter Option One Text Here"
+                                            onChange={this.handleChange} >{this.props.optionOne}</Form.Check>
+                                        <p className="preview-author mt-3">OR</p>
+                                        <Form.Check type="radio" placeholder="Enter Option Two Text Here"
+                                            onChange={this.handleChange} />
+                                        <br />
+                                        <br />
+                                    </FormGroup>
+                                    <Button variant="success" block type="submit">Submit</Button>
+                                </Form>
 
-                </div>
+                            </div>
 
-            </Card.Body>
-        </Card>
+                        </Card.Body>
+                    </Card>
+                ) : (
+                    <Card className="preview-card mt-3">
+                        <Card.Header>
+                            <h4 className="preview-author">Asked by {this.props.username}</h4>
+                        </Card.Header>
+                        <Card.Body>
+                            <Image src={this.props.avatar} roundedCircle className="author-image" />
+
+
+                            <div className="preview-container">
+                                <h3>Results:</h3>
+                               Would you rather {this.props.question.authedUserAns}
+                                    <ProgressBar now={now} label={`${now}%`} />
+                                        <p className="preview-author mt-3">OR</p>
+                                        
+
+                            </div>
+
+                        </Card.Body>
+                    </Card>
+     
+                )}
+            </div>
+
         )
     }
 }
@@ -58,15 +87,20 @@ function mapStateToProps({ users, questions, authedUser }, props) {
     }
 
     const question = questions[userId]
+
     const optionOne = question.optionOne.text
     const optionTwo = question.optionTwo.text
     const username = users[question.author]
-const avatar=users[question.author].avatarURL
+    const avatar = users[question.author].avatarURL
+    let authedUserAns = null
+    authedUserAns = users[authedUser].answers[question.id]
+
     return {
         optionOne,
         optionTwo,
         username,
-        avatar
+        avatar,
+        authedUserAns
     }
 }
 
