@@ -46,8 +46,8 @@ class QuestionPreview extends Component {
                             </div>
                         </Card.Body>
                     </Card>
-                ) : (
-                        <Card className="preview-card mt-3">
+                ) : (<div className="card-position">
+                        <Card className="preview-card mt-4">
                             <Card.Header>
                                 <h4 className="preview-author">Asked by {this.props.username.name}</h4>
                             </Card.Header>
@@ -68,8 +68,7 @@ class QuestionPreview extends Component {
                                             <ProgressBar now={now} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
                                         </Fragment>}</div>
 
-<br/>
-<br/>
+
                                Would you rather {(this.props.authedUserAns === "optionOne") ? this.props.question.optionTwo.text : this.props.question.optionOne.text}?
                                {this.props.authedUserAns === 'optionOne'
                                     ? <Fragment>
@@ -81,7 +80,7 @@ class QuestionPreview extends Component {
 
                             </Card.Body>
                         </Card>
-                    )
+                    </div>)
                 }
             </div>)
     }
