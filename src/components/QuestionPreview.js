@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Image } from 'react-bootstrap'
 import { ProgressBar, Card, Form, Button, FormGroup } from 'react-bootstrap'
@@ -29,8 +29,6 @@ class QuestionPreview extends Component {
                         </Card.Header>
                         <Card.Body>
                             <Image src={this.props.avatar} roundedCircle className="author-image" />
-
-
                             <div className="preview-container">
                                 <h3>Would you rather</h3>
                                 <Form onSubmit={this.handleSubmit}>
@@ -45,35 +43,47 @@ class QuestionPreview extends Component {
                                     </FormGroup>
                                     <Button variant="success" block type="submit">Submit</Button>
                                 </Form>
-
                             </div>
-
                         </Card.Body>
                     </Card>
                 ) : (
                         <Card className="preview-card mt-3">
                             <Card.Header>
-                                <h4 className="preview-author">Asked by {this.props.username}</h4>
+                                <h4 className="preview-author">Asked by {this.props.username.name}</h4>
                             </Card.Header>
                             <Card.Body>
+                                <h3>Results:</h3>
                                 <Image src={this.props.avatar} roundedCircle className="author-image" />
                                 <div className="preview-container">
-                                    <h3>Results:</h3>
-                               Would you rather {this.props.authedUserAns.text}?
+
+
+
+
+                                    Would you rather {this.props.question[this.props.authedUserAns].text}?
                                {this.props.authedUserAns === 'optionOne'
-                                        ? <div>
-                                            <ProgressBar now={now} label={`${now}%`} />{this.props.optionOneVote} out of {this.props.votes} votes}
-                                    <p className="preview-author mt-3">OR</p>
-                                        </div>
-                                        : <div>
-                                            Hello</div>}</div>
+                                        ? <Fragment>
+                                            <ProgressBar now={now} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
+                                    </Fragment>
+                                        : <Fragment>
+                                            <ProgressBar now={now} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
+                                        </Fragment>}</div>
+
+<br/>
+<br/>
+                               Would you rather {(this.props.authedUserAns === "optionOne") ? this.props.question.optionTwo.text : this.props.question.optionOne.text}?
+                               {this.props.authedUserAns === 'optionOne'
+                                    ? <Fragment>
+                                        <ProgressBar now={now} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
+                                    </Fragment>
+                                    : <Fragment>
+                                        <ProgressBar now={now} />{this.props.optionOneVote} out of {this.props.votes} votes
+                                        </Fragment>}
+
                             </Card.Body>
                         </Card>
-
-                    )}
-            </div>
-
-        )
+                    )
+                }
+            </div>)
     }
 }
 function mapStateToProps({ users, questions, authedUser }, props) {
@@ -97,7 +107,7 @@ function mapStateToProps({ users, questions, authedUser }, props) {
 
     const optionOneVote = question.optionOne.votes.length
     const optionTwoVote = question.optionTwo.votes.length
-    const votes = optionOne + optionTwo
+    const votes = optionOneVote + optionTwoVote
 
     return {
         optionOne,
@@ -108,7 +118,7 @@ function mapStateToProps({ users, questions, authedUser }, props) {
         optionOneVote,
         optionTwoVote,
         votes,
-
+        question
     }
 }
 
