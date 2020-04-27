@@ -46,7 +46,7 @@ class QuestionPreview extends Component {
                             </div>
                         </Card.Body>
                     </Card>
-                ) : (<div className="card-position">
+                ) : (
                         <Card className="preview-card mt-4">
                             <Card.Header>
                                 <h4 className="preview-author">Asked by {this.props.username.name}</h4>
@@ -56,31 +56,31 @@ class QuestionPreview extends Component {
                                 <Image src={this.props.avatar} roundedCircle className="author-image" />
                                 <div className="preview-container">
 
-
-
+                                <div className="card-position">
 
                                     Would you rather {this.props.question[this.props.authedUserAns].text}?
                                {this.props.authedUserAns === 'optionOne'
                                         ? <Fragment>
-                                            <ProgressBar now={now} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
+                                            <ProgressBar now={(this.props.optionOneVote/this.props.votes)*100} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
                                     </Fragment>
                                         : <Fragment>
-                                            <ProgressBar now={now} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
+                                            <ProgressBar now={(this.props.optionTwoVote/this.props.votes)*100} className="progress-template" />{this.props.optionTwoVote} out of {this.props.votes} votes
                                         </Fragment>}</div>
 
-
+<br/>
+<br/>
                                Would you rather {(this.props.authedUserAns === "optionOne") ? this.props.question.optionTwo.text : this.props.question.optionOne.text}?
-                               {this.props.authedUserAns === 'optionOne'
+                               {this.props.authedUserAns === 'optionTwo'
                                     ? <Fragment>
-                                        <ProgressBar now={now} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
+                                        <ProgressBar now={(this.props.optionOneVote/this.props.votes)*100} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
                                     </Fragment>
                                     : <Fragment>
-                                        <ProgressBar now={now} />{this.props.optionOneVote} out of {this.props.votes} votes
+                                        <ProgressBar now={(this.props.optionTwoVote/this.props.votes)*100} className="progress-template"/>{this.props.optionTwoVote} out of {this.props.votes} votes
                                         </Fragment>}
-
+                                        </div>
                             </Card.Body>
                         </Card>
-                    </div>)
+                    )
                 }
             </div>)
     }

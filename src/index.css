@@ -70,5 +70,6 @@ code {
 .card-position{
   display:flex;
   flex-direction:column;
+  margin:0px 20px 60px 60px;
 
 }
