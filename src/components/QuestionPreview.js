@@ -2,42 +2,52 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Image } from 'react-bootstrap'
 import { ProgressBar, Card, Form, Button, FormGroup } from 'react-bootstrap'
-
+import { Redirect, withRouter } from 'react-router'
+import { handleAddQuestionAnswer } from '../actions/questions'
 
 class QuestionPreview extends Component {
 
     state = {
         answerSelected: null
     }
-    handleChange = () => {
-
+    handleChange = (e) => {
+        const answerSelected = e.target.id
+        this.setState(() => ({
+            answerSelected
+        }))
     }
 
-    handleSubmit = () => {
-
+    handleSubmit = (e) => {
+        const { dispatch, authedUser, question } = this.props
+        const { answerSelected } = this.state
+        const qid = question.id
+        dispatch(handleAddQuestionAnswer(authedUser, qid, answerSelected))
     }
 
     render() {
-        const now = 60
+        if (this.props.validId === "false") {
+            return <Redirect to="/404" />
+        }
         return (
             <div>
 
-                {(this.props.authedUserAns === null) ? (
+                {(!this.props.authedUserAns) ? (
                     <Card className="preview-card mt-3">
                         <Card.Header>
                             <h4 className="preview-author">{this.props.username.name} asks:</h4>
                         </Card.Header>
                         <Card.Body>
                             <Image src={this.props.avatar} roundedCircle className="author-image" />
-                            <div className="preview-container">
-                                <h3>Would you rather</h3>
-                                <Form onSubmit={this.handleSubmit}>
+                            <div className="preview-container-card">
+                                <h3>Would you rather...</h3>
+                                <br />
+                                <Form onSubmit={(e) => this.handleSubmit(e)}>
                                     <FormGroup>
-                                        <Form.Check type="radio" id="optionOne" placeholder="Enter Option One Text Here"
-                                            onChange={this.handleChange} >{this.props.optionOne}</Form.Check>
+                                        <strong><Form.Check type="radio" id="optionOne" label={this.props.optionOne}
+                                            onChange={(e) => this.handleChange(e)} style={{}} /></strong>
                                         <p className="preview-author mt-3">OR</p>
-                                        <Form.Check type="radio" id="optionTwo" placeholder="Enter Option Two Text Here"
-                                            onChange={this.handleChange} />
+                                        <strong><Form.Check type="radio" id="optionTwo" label={this.props.optionTwo}
+                                            onChange={(e) => this.handleChange(e)} /></strong>
                                         <br />
                                         <br />
                                     </FormGroup>
@@ -56,28 +66,31 @@ class QuestionPreview extends Component {
                                 <Image src={this.props.avatar} roundedCircle className="author-image" />
                                 <div className="preview-container">
 
-                                <div className="card-position">
+                                    <div className="card-position">
 
-                                    Would you rather {this.props.question[this.props.authedUserAns].text}?
+                                        Would you rather {this.props.question[this.props.authedUserAns].text}?
                                {this.props.authedUserAns === 'optionOne'
-                                        ? <Fragment>
-                                            <ProgressBar now={(this.props.optionOneVote/this.props.votes)*100} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
+                                            ? <Fragment>
+                                                <ProgressBar now={(this.props.optionOneVote / this.props.votes) * 100} className="progress-template" />
+                                                {this.props.optionOneVote} out of {this.props.votes} votes
                                     </Fragment>
-                                        : <Fragment>
-                                            <ProgressBar now={(this.props.optionTwoVote/this.props.votes)*100} className="progress-template" />{this.props.optionTwoVote} out of {this.props.votes} votes
-                                        </Fragment>}</div>
+                                            : <Fragment>
+                                                <ProgressBar now={(this.props.optionTwoVote / this.props.votes) * 100} className="progress-template" />
+                                                {this.props.optionTwoVote} out of {this.props.votes} votes
+                                        </Fragment>}
 
-<br/>
-<br/>
+                                        <br />
+                                        <br />
                                Would you rather {(this.props.authedUserAns === "optionOne") ? this.props.question.optionTwo.text : this.props.question.optionOne.text}?
                                {this.props.authedUserAns === 'optionTwo'
-                                    ? <Fragment>
-                                        <ProgressBar now={(this.props.optionOneVote/this.props.votes)*100} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
+                                            ? <Fragment>
+                                                <ProgressBar now={(this.props.optionOneVote / this.props.votes) * 100} className="progress-template" />{this.props.optionOneVote} out of {this.props.votes} votes
                                     </Fragment>
-                                    : <Fragment>
-                                        <ProgressBar now={(this.props.optionTwoVote/this.props.votes)*100} className="progress-template"/>{this.props.optionTwoVote} out of {this.props.votes} votes
+                                            : <Fragment>
+                                                <ProgressBar now={(this.props.optionTwoVote / this.props.votes) * 100} className="progress-template" />{this.props.optionTwoVote} out of {this.props.votes} votes
                                         </Fragment>}
-                                        </div>
+                                    </div>
+                                </div>
                             </Card.Body>
                         </Card>
                     )
@@ -93,6 +106,10 @@ function mapStateToProps({ users, questions, authedUser }, props) {
     } else {
         userId = props.match.params.id
     }
+
+    let validId = true
+    if (Object.keys(questions).filter(id => id === userId).length <= 0)
+        return { validId: false }
 
     const question = questions[userId]
 
@@ -117,8 +134,9 @@ function mapStateToProps({ users, questions, authedUser }, props) {
         optionOneVote,
         optionTwoVote,
         votes,
-        question
+        question,
+        validId
     }
 }
 
-export default connect(mapStateToProps)(QuestionPreview)
+export default withRouter(connect(mapStateToProps)(QuestionPreview))

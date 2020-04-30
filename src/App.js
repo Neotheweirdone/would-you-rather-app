@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route,Switch, Redirect } from 'react-router-do
 import NavHead from './components/NavHead'
 import NewQuestion from './components/NewQuestion';
 import QuestionPreview from './components/QuestionPreview';
+import FourOFour from './components/FourOFour';
 
 function PrivateRoute({component:Component,authedUser,...rest}){
   return(
@@ -33,6 +34,7 @@ class App extends Component {
         <PrivateRoute  path='/' authedUser={this.props.authedUser} exact component={Home} />
         <PrivateRoute path="/add" authedUser={this.props.authedUser} exact component={NewQuestion}/>
         <PrivateRoute path="/quesitons/:id" authedUser={this.props.authedUser} exact component={QuestionPreview}/>
+        <PrivateRoute path="/404"  exact component={FourOFour}/>
         </Switch>
       </div>
     </Router>

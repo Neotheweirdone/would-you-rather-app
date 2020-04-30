@@ -73,3 +73,10 @@ code {
   margin:0px 20px 60px 60px;
 
 }
+.preview-container-card{
+  margin:60px 60px 60px 90px;
+  float: left;
+  padding-left: 240px;
+  
+  border-left: solid 1px #CCC;
+}
