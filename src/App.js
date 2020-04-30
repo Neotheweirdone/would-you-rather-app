@@ -9,6 +9,7 @@ import NavHead from './components/NavHead'
 import NewQuestion from './components/NewQuestion';
 import QuestionPreview from './components/QuestionPreview';
 import FourOFour from './components/FourOFour';
+import Leaderboard from './components/Leaderboard';
 
 function PrivateRoute({component:Component,authedUser,...rest}){
   return(
@@ -34,6 +35,7 @@ class App extends Component {
         <PrivateRoute  path='/' authedUser={this.props.authedUser} exact component={Home} />
         <PrivateRoute path="/add" authedUser={this.props.authedUser} exact component={NewQuestion}/>
         <PrivateRoute path="/quesitons/:id" authedUser={this.props.authedUser} exact component={QuestionPreview}/>
+        <PrivateRoute path="/leaderboard" authedUser={this.props.authedUser} exact component={Leaderboard}/>
         <PrivateRoute path="/404"  exact component={FourOFour}/>
         </Switch>
       </div>
