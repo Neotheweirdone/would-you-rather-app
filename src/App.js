@@ -10,6 +10,7 @@ import NewQuestion from './components/NewQuestion';
 import QuestionPreview from './components/QuestionPreview';
 import FourOFour from './components/FourOFour';
 import Leaderboard from './components/Leaderboard';
+import LoadingBar from 'react-redux-loading'
 
 function PrivateRoute({component:Component,authedUser,...rest}){
   return(
@@ -27,7 +28,7 @@ class App extends Component {
   render() {
 
     return (<Router>
-
+<LoadingBar/>
       <div className="App">
       <NavHead/>
       <Switch>

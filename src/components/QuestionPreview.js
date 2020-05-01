@@ -8,7 +8,7 @@ import { handleAddQuestionAnswer } from '../actions/questions'
 class QuestionPreview extends Component {
 
     state = {
-        answerSelected: null
+        answerSelected: null,
     }
     handleChange = (e) => {
         const answerSelected = e.target.id
@@ -22,12 +22,14 @@ class QuestionPreview extends Component {
         const { answerSelected } = this.state
         const qid = question.id
         dispatch(handleAddQuestionAnswer(authedUser, qid, answerSelected))
+       
     }
 
     render() {
         if (this.props.validId === "false") {
             return <Redirect to="/404" />
         }
+
         return (
             <div>
 
@@ -43,15 +45,18 @@ class QuestionPreview extends Component {
                                 <br />
                                 <Form onSubmit={(e) => this.handleSubmit(e)}>
                                     <FormGroup>
-                                        <strong><Form.Check type="radio" id="optionOne" label={this.props.optionOne}
-                                            onChange={(e) => this.handleChange(e)} style={{}} /></strong>
+                                        <strong><Form.Check type="radio" id="optionOne" name="radioselect" label={this.props.optionOne}
+                                            onChange={(e) => this.handleChange(e)} /></strong>
                                         <p className="preview-author mt-3">OR</p>
-                                        <strong><Form.Check type="radio" id="optionTwo" label={this.props.optionTwo}
+                                        <strong><Form.Check type="radio" id="optionTwo" name="radioselect" label={this.props.optionTwo}
                                             onChange={(e) => this.handleChange(e)} /></strong>
                                         <br />
                                         <br />
                                     </FormGroup>
-                                    <Button variant="success" block type="submit">Submit</Button>
+                                    {this.state.answerSelected === null
+                                        ? <Button variant="success" block disabled type="submit">Submit</Button>
+                                        : <Button variant="success" block type="submit">Submit</Button>
+                                    }
                                 </Form>
                             </div>
                         </Card.Body>

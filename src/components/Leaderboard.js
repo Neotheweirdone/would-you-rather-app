@@ -19,14 +19,13 @@ class Leaderboard extends Component {
   }
 }
 
-function mapStateToProps({users,authedUser,questions}){
+function mapStateToProps({users}){
     let score=null
-    let usersByScore=Object.keys(users).map(user=>(
-          Object.keys(user.answers).length + Object.keys(user.questions).length
-    ))
-    const usersFinal=usersByScore.sort((a,b)=>score(a) - score(b) )
+    let usersByScore=Object.values(users).map(user=>({
+       score:   Object.keys(user.answers).length + Object.keys(user.questions).length
+    })).sort((a,b)=>score(a) - score(b) )
     return{
-users:usersFinal,
+users:usersByScore,
 
     }
 }
