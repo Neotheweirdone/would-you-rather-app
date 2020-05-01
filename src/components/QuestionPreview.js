@@ -18,6 +18,7 @@ class QuestionPreview extends Component {
     }
 
     handleSubmit = (e) => {
+        e.preventDefault()
         const { dispatch, authedUser, question } = this.props
         const { answerSelected } = this.state
         const qid = question.id
@@ -140,7 +141,8 @@ function mapStateToProps({ users, questions, authedUser }, props) {
         optionTwoVote,
         votes,
         question,
-        validId
+        validId,
+        authedUser
     }
 }
 
