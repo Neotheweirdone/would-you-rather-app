@@ -6,7 +6,7 @@ class Leaderboard extends Component {
   render () {
     return (
       <div>
-          {}
+          
         <Card className='preview-card mt-4'>
           <Card.Header>
             </Card.Header>
@@ -21,12 +21,12 @@ class Leaderboard extends Component {
 
 function mapStateToProps({users,authedUser,questions}){
     let score=null
-    let usersByScore=Object.keys(users).map(user=>({
-        score: user.answers.length + user.questions.length
-    })).sort((a,b)=>score(a) - score(b) )
-
+    let usersByScore=Object.keys(users).map(user=>(
+          Object.keys(user.answers).length + Object.keys(user.questions).length
+    ))
+    const usersFinal=usersByScore.sort((a,b)=>score(a) - score(b) )
     return{
-users:usersByScore,
+users:usersFinal,
 
     }
 }
