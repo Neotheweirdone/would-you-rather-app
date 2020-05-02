@@ -23,7 +23,7 @@ class QuestionPreview extends Component {
         const { answerSelected } = this.state
         const qid = question.id
         dispatch(handleAddQuestionAnswer(authedUser, qid, answerSelected))
-       
+
     }
 
     render() {
