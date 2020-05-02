@@ -64,9 +64,9 @@ class Login extends Component {
                   justifyContent: "center",
                   alignItems: "center"
                 }} >
-                  <option> {this.props.users.map((user) => {
+                  {this.props.users.map((user) => {
                     return <option value={user.id} key={user.id}>{user.name}{console.log(user)}</option>
-                  })}</option>
+                  })}
                 </Form.Control>
 
               </Form.Label>
