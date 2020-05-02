@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import {
-  Card, CardImg, Label, CardBody,
-  CardTitle, Button, FormGroup, Form, Input
-} from 'reactstrap';
+  Card, Button, FormGroup, Form, Image,
+} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min'
 import setAuthedUsers from '../actions/authedUser'
@@ -49,32 +48,32 @@ class Login extends Component {
 
     return (
       <Card className="app-container">
-        <CardTitle>
+        <Card.Title>
           <h2 className="center">Welcome to Would You Rather!</h2>
           <p className="center">Please sign in to continue</p>
-        </CardTitle>
-        <CardBody>
-          <CardImg width="50%" height="122" src="/Redux.svg" alt="React image" />
+        </Card.Title>
+        <Card.Body>
+          <Image width="50%" height="122" src="/Redux.svg" alt="React image" />
           <h3 className="center">Sign in</h3>
           <Form onSubmit={this.handleSubmit}>
             <FormGroup >
-              <Label  placeholder="select" onChange={e => this.handleChange(e)}>
-                <Input type="select" name="select" style={{
-                  
+              <Form.Label placeholder="select" onChange={e => this.handleChange(e)}>
+                <Form.Control as="select" value="Choose..." style={{
+
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center"
-                }}  >
-                  {this.props.users.map((user) => {
-                    return <option value={user.id} key={user.id}>{user.name}</option>
-                  })}
+                }} >
+                  <option> {this.props.users.map((user) => {
+                    return <option value={user.id} key={user.id}>{user.name}{console.log(user)}</option>
+                  })}</option>
+                </Form.Control>
 
-                </Input>
-              </Label>
+              </Form.Label>
             </FormGroup>
             <Button type="submit" >Sign In</Button>
           </Form>
-        </CardBody>
+        </Card.Body>
       </Card>
     )
   }
