@@ -86,3 +86,13 @@ code {
   margin-top: -5px;
   margin-bottom: -2px
 }
+.leader-stats {
+  padding: 10px 0;
+  margin:80px 0px 20px 0px
+}
+
+.leader-score {
+  padding: 40px;
+  border: solid 1px #CCC;
+  margin:80px 0px 20px 0px
+}

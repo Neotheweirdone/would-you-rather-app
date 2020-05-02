@@ -1,26 +1,29 @@
 import React, { Component } from 'react'
-import { Row, Col, Image } from 'react-bootstrap'
+import { Row, Col, Image, Container } from 'react-bootstrap'
 import { connect } from 'react-redux'
+
 
 class Leaderboard extends Component {
   render() {
     return (
       <div>
-        {this.props.users.map((user) => (
-          <Row id={user.key}>
-            <Col xs={4}><Image src={user.avatarURL} roundedCircle className="author-image" /></Col>
-            <Col xs={4}>
-              <h4>{user.name}</h4>
-              <br />
-              <p>Answered Questions:{Object.keys(user.anwsers).length}</p>
-              <p>Created Questions:{Object.keys(user.questions).length}</p>
-            </Col>
-            <Col>
-              <h4>Score</h4>
-              <h2>{user.score}</h2>
-            </Col>
-          </Row>
-        ))}
+        <Container>
+          {this.props.users.map((user) => (
+            <Row key={user.id}>
+              <Col xs={4}><Image src={user.avatarURL} roundedCircle className="author-image" /></Col>
+              <Col xs={4} className="leader-stats">
+                <h4>{user.name}</h4>
+                <br />
+                <p>Answered Questions:{Object.keys(user.answers).length}</p>
+                <p>Created Questions:{Object.keys(user.questions).length}</p>
+              </Col>
+              <Col className="leader-score">
+                <h4>Score</h4>
+                <h2>{user.score}</h2>
+              </Col>
+            </Row>
+          ))}
+        </Container>
       </div>
     )
   }
