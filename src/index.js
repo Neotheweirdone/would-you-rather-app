@@ -11,11 +11,11 @@ import Bootstrap from "bootstrap/dist/css/bootstrap.css"
 const store = createStore(allReducers, middleware)
 
 ReactDOM.render(
-  <React.StrictMode>
+  
     <Provider store={store}>
     <App />
     </Provider>
-  </React.StrictMode>,
+  ,
   document.getElementById('root')
 );
 

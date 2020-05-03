@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Navbar, Button, Nav, NavLink } from 'react-bootstrap'
-import { Link, withRouter } from 'react-router-dom'
+import { Navbar, Nav } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Image } from 'react-bootstrap'
-import  setAuthedUsers  from '../actions/authedUser'
+import setAuthedUsers from '../actions/authedUser'
 
 class NavHead extends Component {
 

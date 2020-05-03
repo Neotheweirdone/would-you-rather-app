@@ -58,7 +58,7 @@ class Login extends Component {
           <Form onSubmit={this.handleSubmit}>
             <FormGroup >
               <Form.Label placeholder="select" onChange={e => this.handleChange(e)}>
-                <Form.Control as="select" value="Choose..."  >
+                <Form.Control as="select"   >
                 <option value='select' key='select'>Select User</option>
                   {this.props.users.map((user) => {
                     return <option value={user.id} key={user.id}>{user.name}</option>
