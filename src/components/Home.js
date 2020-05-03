@@ -6,7 +6,7 @@ import Questions from './Questions'
 class Home extends Component {
 
     state = {
-        answered: false
+        answered: "unanswered"
     }
 
     handleTab = (data) => {

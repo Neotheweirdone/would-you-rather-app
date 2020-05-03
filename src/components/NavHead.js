@@ -32,8 +32,8 @@ class NavHead extends Component {
                         <button className="button-preview" onClick={() => this.handleLogout()}>{this.props.authUsername ? "Logout" : "Login"}</button>
                         {this.props.authUserAvatar && (
                             <Nav disabled className="nav-right">
-                                <strong>Welcome,</strong> {this.props.authUserName}
-                                <Image src={this.props.authUserAvatar} circle className="nav-profile-img" />
+                                <strong>Welcome,</strong> {this.props.authUsername}
+                                <Image src={this.props.authUserAvatar} circle="true" className="nav-profile-img" />
                             </Nav>
                         )}
                     </Navbar.Collapse>

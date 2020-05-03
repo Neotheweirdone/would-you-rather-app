@@ -15,8 +15,8 @@ import LoadingBar from 'react-redux-loading'
 function PrivateRoute({component:Component,authedUser,...rest}){
   return(
     <Route {...rest} render={(props)=>authedUser!==null?
-    <Component {...props}/>:<Redirect to="/login"/>}
-/>  
+    <Component {...props}/>:<Redirect to={{pathname:"/login", state: {from: props.location} }}/>
+    }/>
   )}
 
 class App extends Component {
